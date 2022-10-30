@@ -15,8 +15,7 @@ export default function Home() {
   const [articles, setArticles] = useRecoilState(articleRecoil);
 
   useEffect(() => {
-    if(articles.length === 0)
-    baseURL.get('/api/article')
+    baseURL.get('/api/article', {params: {page: 1, size: 3}})
       .then(res => {
         setArticles(res?.data?.data)
       })
@@ -36,11 +35,14 @@ export default function Home() {
           </div>
 
           <div className="row mb-5 pb-5">
-            {articles.map((article, index) => (
-            <div className="col-lg-4 col-md-6 p-3" key={index+'ARTICLE'}>
-              <CardArticle image={article.image} title={article.title} description={article.short_description}  />
-            </div>
-            ))} 
+            {articles.map((article, index) => {
+              if(article.is_visible)
+              return (
+                <div className="col-lg-4 col-md-6 p-3" key={index+'ARTICLE'}>
+                  <CardArticle image={article.image} title={article.title} description={article.short_description} id={article.ar_id} category={article.article_category.title}  />
+                </div>
+                )
+            })} 
           </div>
       </div>
     </div>

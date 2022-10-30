@@ -6,3 +6,9 @@ export const articleRecoil = atom({
     
   ], // default value (aka initial value)
 });
+
+export const currentArticleRecoil = atom({
+  key: "currentArticleRecoil", // unique ID (with respect to other atoms/selectors)
+  default: {
+  }
+});

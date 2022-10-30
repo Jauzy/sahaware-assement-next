@@ -6,9 +6,14 @@ import {registerModal} from '../state/atoms/registerModal'
 
 import baseURL from '../static/baseURL';
 
+import {currentUser} from '../state/atoms/user'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 function LoginForm() {
 
     const [show, setShow] = useRecoilState(loginModal);
+    const [user, setUser] = useRecoilState(currentUser);
     const [showRegister, setShowRegister] = useRecoilState(registerModal);
 
     const toggleShow = () => {
@@ -26,7 +31,14 @@ function LoginForm() {
     const onSubmit = () => {
         setState({...state, isSubmit: true});
         if(state.email && state.password){
-
+            baseURL.post('/api/auth/login', state)
+            .then(res => {
+                cookies.set('token', res.data.token, { path: '/' });
+                setUser(res.data.user)
+            }).catch(err => {
+                console.log(err)
+            })
+            setShow(false)
         }
     }
 

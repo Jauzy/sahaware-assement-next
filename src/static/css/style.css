@@ -44,7 +44,8 @@
 
 .card-article:hover {
     cursor: pointer;
-    background: #E9E9E9;
+    background: #E9E9E9 !important; 
+    color: black;
 }
 
 .custom-modal {
