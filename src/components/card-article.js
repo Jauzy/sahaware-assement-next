@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import {url} from '../static/baseURL'
+
 function CardArticle({image, title, description, id, category}) {
     return ( 
         <Link href={'/articles/'+id} style={{textDecoration:'none', color: '#000'}}>
             <div className='card-article rounded'>
-                <img src={'http://localhost:7000/'+ image} className="w-100" style={{border: '1px solid #C4C4C4', height: '250px', objectFit: 'cover', objectPosition: 'top'}}  />
+                <img src={url+ image} className="w-100" style={{border: '1px solid #C4C4C4', height: '250px', objectFit: 'cover', objectPosition: 'top'}}  />
                 
 
                 <div className='p-2'>

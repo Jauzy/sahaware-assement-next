@@ -5,7 +5,8 @@ import {currentArticleRecoil} from '../../src/state/atoms/articles';
 import {useEffect} from 'react'
 import {useRouter} from 'next/router';
 
-import baseURL from '../../src/static/baseURL'
+import baseURL, {url} from '../../src/static/baseURL'
+
 
 function DetailArticle() {
     const router = useRouter()
@@ -34,7 +35,7 @@ function DetailArticle() {
             <h2 className='h5 my-4' style={{fontWeight:'normal'}}>
                 {currentArticle.short_description}
             </h2>
-            <img src={'http://localhost:7000/'+currentArticle.image} className="w-100 mb-5" style={{maxHeight:'1000px', objectFit:'cover', objectPosition: 'top'}} />
+            <img src={url+currentArticle.image} className="w-100 mb-5" style={{maxHeight:'1000px', objectFit:'cover', objectPosition: 'top'}} />
             
             <div dangerouslySetInnerHTML={{ __html: currentArticle.description }} />
         </div>
